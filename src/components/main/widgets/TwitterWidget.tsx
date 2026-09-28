@@ -1,28 +1,35 @@
 'use client';
 
-import React from 'react';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
+import React, { useEffect } from 'react';
 
 interface TwitterWidgetProps {
   username?: string;
 }
 
-export function TwitterWidget({ username = '내_트위터_아이디' }: TwitterWidgetProps) {
+export function TwitterWidget({ username = 'GJA_cmsn' }: TwitterWidgetProps) {
+  useEffect(() => {
+    // 트위터 타임라인 스크립트 로드
+    const script = document.createElement('script');
+    script.src = 'https://platform.twitter.com/widgets.js';
+    script.async = true;
+    script.charset = 'utf-8';
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
-    <div style={{ width: '100%', height: '100%', minHeight: '320px', overflowY: 'auto', borderRadius: '12px' }}>
-      <TwitterTimelineEmbed
-        sourceType="profile"
-        screenName={username}
-        options={{
-          height: '400',
-          theme: 'dark',
-        }}
-        placeholder={
-          <div style={{ padding: '20px', textAlign: 'center', color: 'var(--faint)' }}>
-            트윗 로딩 중...
-          </div>
-        }
-      />
+    <div style={{ width: '100%', height: '100%', minHeight: '350px', overflowY: 'auto', borderRadius: '12px' }}>
+      <a
+        className="twitter-timeline"
+        data-theme="dark"
+        data-height="400"
+        href={`https://twitter.com/${username}`}
+      >
+        Tweets by {username}
+      </a>
     </div>
   );
 }

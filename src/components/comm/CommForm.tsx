@@ -195,9 +195,24 @@ export function CommForm({ initial, settings, onSave, onCancel }: {
                     } else remove();
                   }}>✕</span>
                 </div>
-                <KInput placeholder="보조 설명 (선택)" value={f.desc ?? ''}
-                  onChange={e => patchField(f.id, { desc: e.target.value || undefined })}
-                  style={{ marginTop: 7, fontSize: 12 }} />
+               <textarea
+  placeholder="보조 설명 (선택 — Enter로 줄바꿈 가능)"
+  value={f.desc ?? ''}
+  onChange={e => patchField(f.id, { desc: e.target.value || undefined })}
+  rows={3}
+  style={{ 
+    marginTop: 7, 
+    fontSize: 12, 
+    width: '100%', 
+    padding: '8px 10px', 
+    resize: 'vertical',
+    border: '1px solid var(--border, #ccc)',
+    borderRadius: 6,
+    background: 'transparent',
+    color: 'inherit',
+    fontFamily: 'inherit'
+  }}
+/>
                 {(f.type === 'single' || f.type === 'multi') && (
                   <div style={{ display: 'grid', gap: 6, marginTop: 8, paddingLeft: 22 }}>
                     {(f.options ?? []).map((op, oi) => (

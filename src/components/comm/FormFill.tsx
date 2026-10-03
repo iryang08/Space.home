@@ -77,7 +77,7 @@ body{font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;max
 h1{font-family:'Noto Serif KR','Nanum Myeongjo',serif;font-size:22px;letter-spacing:.08em;border-bottom:2px solid #1d2025;padding-bottom:12px}
 .q{margin-top:24px;font-weight:700;font-size:14px}
 .rq{color:#a63a45}
-.qd{color:#8a8f98;font-size:12px;margin-top:2px}
+.qd{color:#8a8f98;font-size:12px;margin-top:2px;white-space:pre-wrap}
 .a{margin-top:7px;font-size:13.5px;white-space:pre-wrap;background:#fff;border:1px solid #e2ded9;border-radius:11px;padding:11px 15px;word-break:break-word}
 .a.empty{color:#b6bac1}
 .shots{display:flex;flex-wrap:wrap;gap:10px}
@@ -135,7 +135,7 @@ document.addEventListener('keydown',function(e){
         return (
           <div key={f.id}>
             <div className="q">{i + 1}. {f.label}{f.required && <span className="req">*</span>}</div>
-            {f.desc && <div className="qd">{f.desc}</div>}
+            {f.desc && <div className="qd" style={{ whiteSpace: 'pre-wrap' }}>{f.desc}</div>}
             <div style={{ marginTop: 7 }}>
               {f.type === 'text' && (
                 <KTextarea style={{ minHeight: 64 }} value={typeof a === 'string' ? a : ''}
